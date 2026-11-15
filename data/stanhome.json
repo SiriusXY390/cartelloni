@@ -1,7 +1,7 @@
 {
   "brand": "stanhome",
-  "price": 5,
-  "updatedAt": "2026-11-15T23:02:54Z",
+  "price": 1,
+  "updatedAt": "2026-11-15T23:04:01Z",
   "total": 90,
   "occupied": [
     2,
@@ -32,5 +32,6 @@
     78,
     83,
     90
-  ]
+  ],
+  "contact": "3384935482"
 }
