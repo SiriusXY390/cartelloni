@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="it" data-brand="stanhome">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cartellone Stanhome · 90 numeri</title>
+<meta name="description" content="Cartellone Stanhome dei 90 numeri: scopri subito quali numeri sono ancora liberi.">
+<meta name="theme-color" content="#ffffff">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23edfaf3'/%3E%3Ctext x='32' y='44' font-size='30' font-family='Georgia,serif' font-weight='700' fill='%230a8058' text-anchor='middle'%3E90%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body data-brand="stanhome">
+<div class="wrap">
+
+  <header class="topbar">
+    <div class="brandmark">
+      <span class="dot">S</span>
+      <span>
+        <b>Cartellone Stanhome</b>
+        <span>casa · 90 numeri</span>
+      </span>
+    </div>
+    <span class="tag">Solo cartellone Stanhome</span>
+  </header>
+
+  <main>
+    <section class="hero">
+      <span class="eyebrow">Stanhome · Casa</span>
+      <h1>Un numero fresco,<br><em>una casa che profuma.</em></h1>
+      <p class="lede">
+        Scegli il numero che preferisci: quelli verdi sono già stati presi.
+        Quelli bianchi sono ancora liberi. Tocca un numero per scoprire come aggiudicartelo.
+      </p>
+    </section>
+
+    <section class="stats">
+      <div class="stat accent">
+        <div class="k">Numeri liberi</div>
+        <div class="v" id="stat-free">–</div>
+        <div class="sub">su <span id="stat-total">90</span> disponibili</div>
+      </div>
+      <div class="stat">
+        <div class="k">Già assegnati</div>
+        <div class="v" id="stat-busy">–</div>
+        <div class="sub">numeri occupati</div>
+      </div>
+      <div class="stat">
+        <div class="k">Quota</div>
+        <div class="v" data-price>5€</div>
+        <div class="sub">per numero</div>
+      </div>
+      <div class="progress" aria-hidden="true"><i id="progress-bar"></i></div>
+    </section>
+
+    <section class="board-panel">
+      <div class="board-head">
+        <div class="legend">
+          <span><i class="f"></i>Libero</span>
+          <span><i class="o"></i>Occupato</span>
+        </div>
+        <div class="board-meta">
+          <span class="livedot" aria-hidden="true"></span>
+          <span id="updated">caricamento…</span>
+        </div>
+      </div>
+      <div class="grid" id="grid" aria-label="Cartellone dei 90 numeri"></div>
+    </section>
+
+    <div class="actions">
+      <button class="btn" id="share" type="button">Condividi il link</button>
+      <button class="btn ghost" id="refresh" type="button">Aggiorna</button>
+      <a class="btn ghost" id="wa" href="#" hidden>Scrivimi su WhatsApp</a>
+    </div>
+
+    <section class="how">
+      <article>
+        <div class="step">1</div>
+        <h3>Trova il numero libero</h3>
+        <p>I numeri verdi sono già assegnati, quelli bianchi sono ancora disponibili.</p>
+      </article>
+      <article>
+        <div class="step">2</div>
+        <h3>Fammelo sapere</h3>
+        <p>Tocca il numero che vuoi e scrivimi: te lo assegno subito sul cartellone.</p>
+      </article>
+      <article>
+        <div class="step">3</div>
+        <h3>Resta aggiornato</h3>
+        <p>La pagina si aggiorna da sola in tempo reale: non devi fare niente.</p>
+      </article>
+    </section>
+  </main>
+
+  <footer>
+    <span>© <span id="year">2026</span> Cartellone Stanhome</span>
+    <span>Aggiornamento automatico attivo.</span>
+  </footer>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script src="assets/firebase-config.js"></script>
+<script src="assets/board.js"></script>
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
