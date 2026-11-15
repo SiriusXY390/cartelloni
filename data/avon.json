@@ -1,10 +1,8 @@
 {
   "brand": "avon",
   "price": 1,
-  "updatedAt": "2026-11-15T23:24:08Z",
+  "updatedAt": "2026-11-15T23:27:56Z",
   "total": 90,
-  "occupied": [
-    2
-  ],
+  "occupied": [],
   "contact": "3384935482"
 }
