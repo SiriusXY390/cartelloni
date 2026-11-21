@@ -162,9 +162,27 @@
 
   // ---------------------------------------------------------------- Firebase
 
+  /** La configurazione arriva da data/firebase.json: essendo letta con un
+      parametro anti-cache, è sempre quella appena pubblicata (niente attese). */
+  async function firebaseConfig() {
+    const inline = window.FIREBASE_CONFIG;
+    if (inline && inline.projectId && inline.apiKey) return inline;
+    try {
+      const res = await fetch(`data/firebase.json?t=${Date.now()}`, { cache: 'no-store' });
+      if (!res.ok) return null;
+      const cfg = await res.json();
+      return cfg && cfg.projectId && cfg.apiKey ? cfg : null;
+    } catch (err) {
+      return null;
+    }
+  }
+
   async function startRealtime() {
-    const cfg = window.FIREBASE_CONFIG;
-    if (!cfg || !cfg.projectId || !cfg.apiKey) return false;
+    const cfg = await firebaseConfig();
+    if (!cfg) {
+      document.documentElement.dataset.live = 'off';
+      return false;
+    }
 
     let appMod, fsMod;
     try {
@@ -173,6 +191,7 @@
         import(`https://www.gstatic.com/firebasejs/${FIREBASE_VERSION}/firebase-firestore.js`)
       ]);
     } catch (err) {
+      document.documentElement.dataset.live = 'sdk-error';
       console.warn('[cartelloni] Firebase non disponibile, uso i dati salvati.', err && err.message);
       return false;
     }
@@ -188,16 +207,18 @@
           if (!liveActive) {
             liveActive = true;
             document.body.classList.add('is-live');
-            document.documentElement.dataset.live = '1';
+            document.documentElement.dataset.live = 'on';
           }
           show(Array.isArray(data.occupied) ? data.occupied : [], data, false);
         },
         (err) => {
+          document.documentElement.dataset.live = 'error';
           console.warn('[cartelloni] Firebase non raggiungibile, resto sui dati salvati.', err && err.message);
         }
       );
       return true;
     } catch (err) {
+      document.documentElement.dataset.live = 'init-error';
       console.warn('[cartelloni] Firebase non avviato, uso i dati salvati.', err && err.message);
       return false;
     }
